@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulir Login dan Pendaftaran</title>
+
+    <script>
+    function showRegistrationForm() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        // Display email
+        document.getElementById("userEmail").innerText = "Email: " + email;
+
+        // Display password with asterisks
+        var maskedPassword = '*'.repeat(password.length);
+        document.getElementById("passwordDisplay").innerText = "Password: " + maskedPassword;
+
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("userData").style.display = "block";
+    }
+
+    function showActualRegistrationForm() {
+        document.getElementById("registrationForm").style.display = "block";
+    }
+    </script>
+  </head>
+
+  <body>
+    <div id="loginForm">
+      <h2>Login<br />website codemadura</h2>
+      <form action="login_process.php" method="post">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required /><br />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required /><br />
+
+        <input type="button" value="Login" onclick="showRegistrationForm();" />
+      </form>
+    </div>
+
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      #loginForm,
+      #registrationForm,
+      #userData {
+        position: relative;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+      }
+
+      #loginForm::before,
+      #registrationForm::before,
+      #loginForm::after,
+      #registrationForm::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        filter: blur(10px);
+        z-index: -1;
+      }
+
+      #registrationForm {
+        display: none;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        text-align: left;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      input[type="submit"],
+      input[type="button"] {
+        background-color: #4caf50;
+        color: white;
+        cursor: pointer;
+      }
+
+      a {
+        color: #4caf50;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      #registrationForm h2 {
+        margin-bottom: 20px;
+      }
+    </style>
+
+<div id="userData" style="display: none">
+    <h2>Login berhasil</h2>
+    <p id="userEmail"></p>
+    <p id="passwordDisplay"></p>
+    <button onclick="showActualRegistrationForm()">
+        Daftar bootcamp
+    </button>
+</div>
+
+    <div id="registrationForm" style="display: none">
+      <h2>Formulir Pendaftaran bootcamp fullstack</h2>
+      <form action="registration_process.php" method="get">
+        <div style="display: flex; justify-content: space-between">
+          <div style="width: 48%">
+            <label for="fullname">Nama Lengkap:</label>
+            <input type="text" id="fullname" name="fullname" required /><br />
+
+            <label for="gender">Jenis Kelamin:</label>
+            <select id="gender" name="gender" required>
+              <option value="pria">Pria</option>
+              <option value="wanita">Wanita</option></select
+            ><br />
+
+            <label for="dob">Tanggal Lahir:</label>
+            <input type="date" id="dob" name="dob" required /><br />
+
+            <label for="profession">Status Pendidikan:</label>
+            <select id="profession" name="profession" required>
+              <option value="mahasiswa">Mahasiswa</option>
+              <option value="siswa">Siswa</option>
+            </select>
+          </div>
+          <div style="width: 48%">
+            <label for="school">Nama Kampus/Sekolah:</label>
+            <input type="text" id="school" name="school" required /><br />
+
+            <label for="whatsapp">Nomor WhatsApp:</label>
+            <input type="tel" id="whatsapp" name="whatsapp" required /><br />
+
+            <label for="address">Alamat:</label>
+            <textarea id="address" name="address" rows="4" required></textarea
+            ><br />
+
+            <input type="submit" value="Daftar" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
