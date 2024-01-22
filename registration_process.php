@@ -10,16 +10,21 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $whatsapp = isset($_GET["whatsapp"]) ? htmlspecialchars($_GET["whatsapp"], ENT_QUOTES, 'UTF-8') : "";
     $address = isset($_GET["address"]) ? htmlspecialchars($_GET["address"], ENT_QUOTES, 'UTF-8') : "";
 
-    // Proses pendaftaran (simpan data ke database, dll.)
-    // Contoh: Menampilkan data yang didaftarkan
-    echo "Pendaftaran berhasil!<br>";
-    echo "Nama Lengkap: " . $fullname . "<br>";
-    echo "Jenis Kelamin: " . $gender . "<br>";
-    echo "Tanggal Lahir: " . $dob . "<br>";
-    echo "Status Pendidikan: " . $education_status . "<br>";
-    echo "Nama Kampus/Sekolah: " . $school . "<br>";
-    echo "Nomor WhatsApp: " . $whatsapp . "<br>";
-    echo "Alamat: " . $address . "<br>";
+    // Validasi nomor WhatsApp
+    if (!preg_match("/^\d{12,13}$/", $whatsapp)) {
+        echo "Nomor WhatsApp harus terdiri dari 12-13 digit angka.";
+    } else {
+        // Proses pendaftaran (simpan data ke database, dll.)
+        // Contoh: Menampilkan data yang didaftarkan
+        echo "Pendaftaran berhasil!<br>";
+        echo "Nama Lengkap: " . $fullname . "<br>";
+        echo "Jenis Kelamin: " . $gender . "<br>";
+        echo "Tanggal Lahir: " . $dob . "<br>";
+        echo "Status Pendidikan: " . $education_status . "<br>";
+        echo "Nama Kampus/Sekolah: " . $school . "<br>";
+        echo "Nomor WhatsApp: " . $whatsapp . "<br>";
+        echo "Alamat: " . $address . "<br>";
+    }
 } else {
     // Jika form tidak disubmit secara sah, kembali ke form login
     echo "Formulir tidak disubmit dengan benar!<br>";
